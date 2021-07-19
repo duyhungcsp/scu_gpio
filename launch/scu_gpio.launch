@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="scu_gpio" type="scu_gpio_node" name="scu_gpio_node" output="screen"/>
+    <node pkg="tx2_gpio" type="tx2_ctr_node.py" name="scu_ctrl_node" output="screen"/>
+</launch>
