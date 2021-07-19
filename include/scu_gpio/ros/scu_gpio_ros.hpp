@@ -6,6 +6,7 @@
 
 #include "scu_gpio.hpp"
 #include "scu_gpio/scu_gpio_cmd.h"
+#include "scu_gpio/gpio_cmd_stt.h"
 
 namespace scu_gpio {
     class GpioROS {
@@ -14,12 +15,15 @@ namespace scu_gpio {
 
             ~GpioROS();
 
-            void gpioCmdCallback(const scu_gpio_cmd gpio_cmd_msg);
+            bool set_gpio_(
+                scu_gpio::gpio_cmd_stt::Request &req,
+                scu_gpio::gpio_cmd_stt::Response &res);
         
         private:
-            Gpio gpio_;
 
-            ros::Subscriber gpio_sub_;
+            scu_gpio::Gpio gpio_ctrler;
+
+            ros::ServiceServer gpio_service_;
     };
 }
 
