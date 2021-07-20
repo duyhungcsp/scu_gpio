@@ -1,18 +1,19 @@
 #include "scu_ros.hpp"
 
-namespace scu_gpio {
-    SCU_GPIO_ROS::SCU_GPIO_ROS(ros::NodeHandle &nh) :
+namespace scu {
+    SCU_ROS::SCU_ROS(ros::NodeHandle &nh) :
     nh_(nh),
     gpio_set_ros_(nh) 
     {
 
     }
-    SCU_GPIO_ROS::~SCU_GPIO_ROS() {
+    SCU_ROS::~SCU_ROS() {
 
     }
 
-    void SCU_GPIO_ROS::run() {
-        
+    void SCU_ROS::run() {
+        // scu::gpio_interrupt_thread = std::thread(std::bind(&scu::gpio_interrupt_func, this), 31);
+        // scu::gpio_interrupt_thread.detach();
     }
 
 }
@@ -20,7 +21,8 @@ namespace scu_gpio {
 int main(int argc, char **argv) {
     ros::init(argc, argv, "scu_gpio_ros");
     ros::NodeHandle nh;
-    scu_gpio::SCU_GPIO_ROS scu_gpio_ros_(nh);
-    // scu_gpio_ros_.run();
+    scu::SCU_ROS scu_ros_(nh);
+    scu_ros_.run();
+
     ros::spin();
 }

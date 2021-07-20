@@ -60,12 +60,11 @@ add_message_files(DIRECTORY msg
   scu_gpio_stt.msg
 )
 
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+# Generate services in the 'srv' folder
+add_service_files(
+  FILES
+  gpio_cmd_stt.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -156,6 +155,12 @@ add_library(${PROJECT_NAME}
 add_executable(${PROJECT_NAME}_node src/ros/scu_ros.cpp
 )
 
+add_executable(gpio_client src/ros/test_client.cpp
+)
+
+add_executable(test_interrupt src/test_interrupt.cpp
+)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -168,6 +173,16 @@ add_executable(${PROJECT_NAME}_node src/ros/scu_ros.cpp
 
 # Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}_node
+  ${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(gpio_client
+  ${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(test_interrupt
   ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )

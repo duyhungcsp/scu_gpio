@@ -4,7 +4,8 @@
 
 using namespace std;
 
-namespace scu_gpio {
+namespace scu{
+// namespace scu_gpio {
     /* Init GPIO in pin BOARD mode. */
     Gpio::Gpio() {
         /* Set GPIO pins in BOARD mode from 1 to 40. */
@@ -83,7 +84,7 @@ namespace scu_gpio {
                 /* Setup these GPIO pins. */
                 default:
                     switch (gpio_setup_p[pin_index]) {
-                        case 0x0C:
+                        case 0xFC:
                             break;
                         case 0x10:
                             GPIO::setup(pin_index, GPIO::OUT, GPIO::LOW);
@@ -134,7 +135,7 @@ namespace scu_gpio {
                 /* Setup these GPIO pins. */
                 default:
                     switch (gpio_set_p[pin_index]) {
-                        case 0x0C:
+                        case 0xFC:
                             break;
                         case 0x10:
                             GPIO::output(pin_index, GPIO::LOW);
@@ -155,8 +156,9 @@ namespace scu_gpio {
     /* Get GPIO pin out:
         *   BOARD_PIN_SET[x] = 0: input LOW
         *   BOARD_PIN_SET[x] = 1: input HIGHT
+        *   BOARD_PIN_SET[x] = 2: not input pin
     */
-    void Gpio::get_gpio(int8_t * gpio_set_p) {
+    void Gpio::get_gpio(int8_t * gpio_get_p) {
         for (int pin_index = 1; pin_index <= NUMBER_OF_PIN; pin_index++) {
             switch (pin_index) {
                 /* Skip these pins because they are not GPIO pins. */
@@ -178,25 +180,23 @@ namespace scu_gpio {
                 case 30:    // GND
                 case 34:    // GND
                 case 39:    // GND
+                    Gpio::gpio_get[pin_index] = 2;
                     break;
 
                 /* Setup these GPIO pins. */
                 default:
-                    switch (gpio_set_p[pin_index]) {
-                        case 0x0C:
-                            break;
-                        case 0x10:
-                            break;
-                        case 0x11:
-                            break;
+                    switch (gpio_get_p[pin_index]) {
                         case 0x0F:
+                            GPIO::setup(pin_index, GPIO::IN);
                             Gpio::gpio_get[pin_index] = GPIO::input(pin_index);
                             break;
-                        default:       
+                        default:  
+                            Gpio::gpio_get[pin_index] = 2;
                             break;                    
                     }
                     break;
             }    
         }
     }
+// }
 }

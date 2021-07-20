@@ -1,21 +1,24 @@
 # Resquest constants
 # BOARD_PIN_SET[x] is set with different values corresponding to different status:
 # Pin number 1 to 40 (skip index 0)
-#   BOARD_PIN_SET[x] = 0x0C: unchange
+#   BOARD_PIN_SET[x] = 0xFC: unchange
 #   BOARD_PIN_SET[x] = 0x10: output LOW
 #   BOARD_PIN_SET[x] = 0x11: output HIGHT
 #   BOARD_PIN_SET[x] = 0x0F: input
-#   BOARD_PIN_SET[x] = 0xAF: alternative function
+#   BOARD_PIN_SET[x] = 0xFA: alternative function
 
 # Respond constants
 # BOARD_PIN_STT[x] is set with different values corresponding to different status:
 # Pin number 1 to 40 (skip index 0)
-#   BOARD_PIN_STT[x] = 0x0C: be not configured
+#   BOARD_PIN_STT[x] = 0xFC: be not configured
 #   BOARD_PIN_STT[x] = 0x10: output LOW
 #   BOARD_PIN_STT[x] = 0x11: output HIGHT
 #   BOARD_PIN_STT[x] = 0x00: input LOW
-#   BOARD_PIN_STT[x] = 0x01: input LOW
-#   BOARD_PIN_STT[x] = 0xAF: alternative function
+#   BOARD_PIN_STT[x] = 0x01: input HIGH
+#   BOARD_PIN_STT[x] = 0x0A: input attach Interrupt RISING edge
+#   BOARD_PIN_STT[x] = 0x0B: input attach Interrupt FALLING edge
+#   BOARD_PIN_STT[x] = 0x0C: input attach Interrupt onchange
+#   BOARD_PIN_STT[x] = 0xFA: alternative function
 
 Header header
 int8[41] BOARD_PIN_CMD

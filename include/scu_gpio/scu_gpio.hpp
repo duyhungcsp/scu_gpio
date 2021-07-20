@@ -5,7 +5,8 @@
 
 #define NUMBER_OF_PIN 40
 
-namespace scu_gpio {
+namespace scu{
+// namespace scu_gpio {
     class Gpio {
         public:
             Gpio();
@@ -16,8 +17,9 @@ namespace scu_gpio {
 
             void setup_gpio(int8_t * gpio_setup_p);
             void set_gpio(int8_t * gpio_set_p);
-            void get_gpio(int8_t * gpio_get);
+            void get_gpio(int8_t * gpio_get_p);
     };
+// }
 }
 
 #endif

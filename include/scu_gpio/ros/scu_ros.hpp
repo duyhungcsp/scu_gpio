@@ -2,14 +2,17 @@
 #define SCU_GPIO_ROS_HPP
 
 #include <ros/ros.h>
+#include <thread>
 
 #include "scu_gpio_ros.hpp"
 
-namespace scu_gpio {
-    class SCU_GPIO_ROS {
+// using namespace std;
+
+namespace scu {
+    class SCU_ROS {
         public:
-            SCU_GPIO_ROS(ros::NodeHandle &nh);
-            ~SCU_GPIO_ROS();
+            SCU_ROS(ros::NodeHandle &nh);
+            ~SCU_ROS();
 
             void run();
 
@@ -17,6 +20,10 @@ namespace scu_gpio {
             ros::NodeHandle nh_;
             GpioROS gpio_set_ros_;
     };
+
+    // std::thread gpio_interrupt_thread;
+
+    // void gpio_interrupt_func(int pin_index);
 }
 
 #endif
