@@ -17,12 +17,19 @@ int main(int argc, char **argv)
 
     int pin_index = atoll(argv[1]);
     
+    for (int pin_index = 0; pin_index <= 40; pin_index++)
+        srv.request.BOARD_PIN_CMD[pin_index] = 0xFC;
+    
     if (atoll(argv[2]) == 0)
         srv.request.BOARD_PIN_CMD[pin_index] = 0x10;
     else if (atoll(argv[2]) == 1)
         srv.request.BOARD_PIN_CMD[pin_index] = 0x11;
-    else if (atoll(argv[2]) == 2)
-        srv.request.BOARD_PIN_CMD[pin_index] = 0x0F;
+    else if (atoll(argv[2]) == 10)
+        srv.request.BOARD_PIN_CMD[pin_index] = 0x0A;
+    else if (atoll(argv[2]) == 11)
+        srv.request.BOARD_PIN_CMD[pin_index] = 0x0B;
+    else if (atoll(argv[2]) == 12)
+        srv.request.BOARD_PIN_CMD[pin_index] = 0x0C;
 
     
     ros::Time time_begin = ros::Time::now();

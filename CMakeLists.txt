@@ -155,7 +155,7 @@ add_library(${PROJECT_NAME}
 add_executable(${PROJECT_NAME}_node src/ros/scu_ros.cpp
 )
 
-add_executable(gpio_client src/ros/test_client.cpp
+add_executable(test_client src/ros/test_client.cpp
 )
 
 add_executable(test_interrupt src/test_interrupt.cpp
@@ -177,7 +177,7 @@ target_link_libraries(${PROJECT_NAME}_node
   ${catkin_LIBRARIES}
 )
 
-target_link_libraries(gpio_client
+target_link_libraries(test_client
   ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )

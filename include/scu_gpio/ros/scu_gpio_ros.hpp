@@ -22,7 +22,7 @@ namespace scu {
 
             void server_func(ros::NodeHandle nh);
 
-            void interrupt_func(int8_t * gpio_interrupt_p);
+            void interrupt_func(uint8_t * gpio_interrupt_p);
 
         private:
 
